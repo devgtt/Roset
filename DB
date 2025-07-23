@@ -31,6 +31,11 @@ def register():
     if password != confirm_password:
         return jsonify({"error": "Passwords do not match"}), 400
 
+    # Check if the user already exists
+    existing_user = User.query.filter_by(email=email).first()
+    if existing_user:
+        return jsonify({"error": "User already signed up with this email"}), 400
+
     user = User(username=username, email=email, password=password)
     db.session.add(user)
     db.session.commit()
