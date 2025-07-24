@@ -40,5 +40,5 @@ def generate_text():
     except Exception as e:
         return jsonify({"error": f"An unexpected error occurred: {e}"}), 500
 
-if name == '__main__':
+if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
